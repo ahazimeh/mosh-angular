@@ -1,0 +1,52 @@
+for 2 way binding, go to app.module and import FormsModule
+
+ch3 vd 7 and 8://you can use ng g s courses(ch 9)
+//service to read data from an api
+constructor(service: CoursesService) {
+        this.courses = service.getCourses();
+}
+//in courses.services.ts
+export class CoursesService {//add this is the module(providers)
+    getCourses() {
+        return ["course1", "course2", "course3"];
+    }
+}
+
+ch 4: 2
+<img src = "{{ imageUrl }}"/> //textContent for text
+<img [src]="imageUrl"/>
+    :3
+<td [attr.colSpan]="colSpan">aa</td>//it worked without adding attr on newer angular version
+    :4
+@import "~bootstrap/dist/css/bootstrap.css";//in styles.scss
+    :5
+    [class.active]="isActive"
+    :6
+    [style.backgroundColor]="isActive ? 'blue':'white'"
+    :7
+    <button (click)="onSave($event)">Save</button>
+    onSave($event: any) {
+        $event.stopPropagation();
+        console.log("button was clicked", $event);
+    }
+
+    :8 9
+    <input type (keyup.enter)="onKeyUp($event)" />
+    onKeyUp() {
+        console.log($event)
+    }
+    <input #email type (keyup.enter)="onKeyUp(email.value)" />
+    onKeyUp(email) {
+        console.log(email)
+    }
+    :10
+    email = "me@example.com"
+    <input [(ngModel)]="email" (keyup.enter)="onKeyUp()"/>//2 way binding([(ngModel)]="email")
+    onKeyUp() {
+        // if ($event.keyCode === 13)
+        console.log(this.email)
+    }
+
+    :11
+    pipes
+    summary pipe, and pipes in the website
