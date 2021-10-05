@@ -1,4 +1,7 @@
+import { FavoriteChangedEventArgs } from './favorite/favorite.component';
 import { Component } from '@angular/core';
+
+
 
 @Component({
   selector: 'app-root',
@@ -39,5 +42,10 @@ export class AppComponent {
   }
   trackCourse(index: any, course: any) {
     return course ? course.id : undefined;
+  }
+
+  
+  onFavoriteChanged(eventArgs: FavoriteChangedEventArgs) {//rather than {newValue:boolean}
+    console.log("favorite changed:", eventArgs)
   }
 }

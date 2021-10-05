@@ -1,8 +1,12 @@
+import { AppErrorHandler } from './common/app-error-handler';
+import { PostService } from './services/post.service';
+
+import {HttpClientModule} from "@angular/common/http"
 import { SignupFormComponent } from './signup-form/signup-form.component';
 import { SummaryPipe } from './summary.pipe';
 import { CoursesService } from './courses.service';
 import { CoursesComponent } from './courses.component';
-import { NgModule } from '@angular/core';
+import { ErrorHandler, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
@@ -13,6 +17,8 @@ import { InputFormatDirective } from './input-format.directive';
 import { ContactFormComponent } from './contact-form/contact-form.component';
 import { NewCourseFormComponent } from './new-course-form/new-course-form.component';
 import { FavoriteComponent } from './favorite/favorite.component';
+import { PanelComponent } from './panel/panel.component';
+import { PostsComponent } from './posts/posts.component';
 
 @NgModule({
   declarations: [
@@ -24,15 +30,24 @@ import { FavoriteComponent } from './favorite/favorite.component';
     InputFormatDirective,
     ContactFormComponent,
     NewCourseFormComponent,
-    FavoriteComponent
+    FavoriteComponent,
+    PanelComponent,
+    PostsComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
-  providers: [CoursesService],
+  providers: [
+    PostService,
+    CoursesService,
+    {
+      provide:ErrorHandler,useClass:AppErrorHandler//replace ErrorHandler by AppErrorHandler 
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

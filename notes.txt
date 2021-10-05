@@ -50,3 +50,17 @@ ch 4: 2
     :11
     pipes
     summary pipe, and pipes in the website
+
+
+
+
+
+
+
+
+
+
+
+
+
+Validation
